@@ -50,15 +50,15 @@
       padding: 5rem 1rem 6rem;
     }
 
-    /* Custom padding per slide */
+    /* Slide-specific padding for better vertical layout */
     .slide:nth-child(1) {
-      padding-top: 5rem;
+      padding-top: 5rem; /* Perfect */
     }
 
     .slide:nth-child(2),
     .slide:nth-child(3),
     .slide:nth-child(4) {
-      padding-top: 6rem; /* Moves image + content lower */
+      padding-top: 7.5rem; /* moved further down */
     }
 
     .slide img {
@@ -140,7 +140,7 @@
       .slide:nth-child(2),
       .slide:nth-child(3),
       .slide:nth-child(4) {
-        padding-top: 6.5rem;
+        padding-top: 8rem; /* further down for small screens */
       }
 
       .slide h1 {
