@@ -47,24 +47,15 @@
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding: 5rem 1rem 6rem;
-    }
-
-    /* Slide-specific padding for better vertical layout */
-    .slide:nth-child(1) {
-      padding-top: 5rem; /* Perfect */
-    }
-
-    .slide:nth-child(2),
-    .slide:nth-child(3),
-    .slide:nth-child(4) {
-      padding-top: 7.5rem; /* moved further down */
+      padding-top: 6.2rem; /* slightly more than before, but still tight */
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
     .slide img {
       width: 80%;
       max-width: 280px;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.6rem;
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
     }
@@ -85,7 +76,7 @@
 
     .dots {
       position: fixed;
-      bottom: 90px;
+      bottom: 95px;
       width: 100%;
       text-align: center;
       z-index: 2;
@@ -133,14 +124,8 @@
     }
 
     @media (max-width: 480px) {
-      .slide:nth-child(1) {
-        padding-top: 5rem;
-      }
-
-      .slide:nth-child(2),
-      .slide:nth-child(3),
-      .slide:nth-child(4) {
-        padding-top: 8rem; /* further down for small screens */
+      .slide {
+        padding-top: 7.2rem; /* slightly more for smaller screens */
       }
 
       .slide h1 {
@@ -153,7 +138,6 @@
 
       .slide img {
         max-width: 220px;
-        margin-top: 0.5rem;
       }
 
       .nav-btn {
@@ -168,7 +152,7 @@
       }
 
       .dots {
-        bottom: 70px;
+        bottom: 68px;
       }
     }
   </style>
