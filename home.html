@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VTU Connect Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VTU Connect Pro</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #121212;
       color: #fff;
-      line-height: 1.6;
       transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
     }
 
     body.light-theme {
@@ -56,7 +57,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 12px;
     }
 
@@ -67,6 +68,7 @@
       text-align: center;
       font-size: 14px;
       cursor: pointer;
+      transition: background 0.3s;
     }
 
     .grid-item:hover {
@@ -89,6 +91,7 @@
 
     .icon {
       font-size: 24px;
+      cursor: pointer;
     }
 
     .timetable {
@@ -131,6 +134,7 @@
 
     footer i {
       font-size: 20px;
+      cursor: pointer;
     }
 
     body.light-theme footer {
@@ -172,7 +176,7 @@
       background: #eee;
     }
 
-    /* 🌍 Earth-style toggle */
+    /* Earth-style toggle */
     .toggle-switch {
       width: 50px;
       height: 26px;
@@ -198,7 +202,7 @@
       font-size: 14px;
     }
 
-    body.light-theme .toggle-circle {
+    body.light-theme .toggle-switch .toggle-circle {
       transform: translateX(24px);
     }
 
