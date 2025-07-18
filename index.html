@@ -47,7 +47,7 @@
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding-top: 6.2rem; /* slightly more than before, but still tight */
+      padding-top: 6.2rem;
       padding-left: 1rem;
       padding-right: 1rem;
     }
@@ -102,7 +102,8 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+
+      gap: 7rem; /* ✅ Increased spacing between Back and Next buttons */
       z-index: 3;
       padding: 0 2rem;
     }
@@ -125,7 +126,7 @@
 
     @media (max-width: 480px) {
       .slide {
-        padding-top: 7.2rem; /* slightly more for smaller screens */
+        padding-top: 7.2rem;
       }
 
       .slide h1 {
@@ -147,7 +148,8 @@
 
       .navigation {
         bottom: 25px;
-        gap: 1rem;
+
+        gap: 1.7rem; /* ✅ Maintained spacing between buttons for small screens */
         padding: 0 1.5rem;
       }
 
