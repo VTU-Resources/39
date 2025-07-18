@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VTU Connect Clone</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light-theme {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    header, nav, .container {
+      padding: 16px;
+    }
+
+    .banner {
+      background: linear-gradient(135deg, orange, #ff8800);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      color: white;
+      margin: 16px 0;
+    }
+
+    .section {
+      background: #1e1e1e;
+      margin: 16px 0;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    body.light-theme .section {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .grid-item {
+      background: #292929;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .grid-item:hover {
+      background: #333;
+    }
+
+    body.light-theme .grid-item {
+      background: #ddd;
+    }
+
+    body.light-theme .grid-item:hover {
+      background: #ccc;
+    }
+
+    .icons-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .icon {
+      font-size: 24px;
+    }
+
+    .timetable {
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      background: #1a1a1a;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .timetable div {
+      flex: 0 0 auto;
+      text-align: center;
+      padding: 10px 16px;
+      background: #333;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    body.light-theme .timetable {
+      background: #e0e0e0;
+    }
+
+    body.light-theme .timetable div {
+      background: #bbb;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    footer i {
+      font-size: 20px;
+    }
+
+    body.light-theme footer {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    #modal, #notifModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #1e1e1e;
+    }
+
+    body.light-theme .top-bar {
+      background: #eee;
+    }
+
+    /* 🌍 Earth-style toggle */
+    .toggle-switch {
+      width: 50px;
+      height: 26px;
+      background: #444;
+      border-radius: 50px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-circle {
+      width: 22px;
+      height: 22px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    body.light-theme .toggle-circle {
+      transform: translateX(24px);
+    }
+
+    body.light-theme .toggle-switch {
+      background: #ddd;
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="top-bar">
+    <h3>VTU Connect</h3>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <i class="fas fa-bell" onclick="showNotif()" style="font-size: 20px; cursor:pointer;"></i>
+      <div class="toggle-switch" onclick="toggleTheme()">
+        <div class="toggle-circle" id="toggleIcon">🌙</div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <h2>Welcome, <span style="color: orange">Shridhar J</span></h2>
+    <div class="timetable">
+      <div>1st Sem</div>
+      <div>2nd Sem</div>
+      <div>3rd Sem</div>
+      <div>4th Sem</div>
+      <div>5th Sem</div>
+      <div>6th Sem</div>
+      <div>7th Sem</div>
+      <div>8th Sem</div>
+    </div>
+  </header>
+
+  <div class="banner">
+    <h3>BEST PLATFORM FOR VTU STUDENTS</h3>
+    <p>Over 120K+ Installs • 40K+ Active Students</p>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="section-title">Academics & Resources</div>
+      <div class="grid">
+        <div class="grid-item" onclick="showModal('Syllabus Details')">Syllabus</div>
+        <div class="grid-item" onclick="showModal('Notes Info')">Notes</div>
+        <div class="grid-item" onclick="showModal('Old Question Papers')">Question Papers</div>
+        <div class="grid-item" onclick="showModal('Latest Notifications')">Notifications</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Results & Analysis</div>
+      <div class="grid">
+        <div class="grid-item" onclick="showModal('Result History')">Results</div>
+        <div class="grid-item" onclick="showModal('Subject Wise Performance')">Subject Analysis</div>
+        <div class="grid-item" onclick="showModal('Calculate CGPA')">CGPA Calculator</div>
+        <div class="grid-item" onclick="showModal('Student Polls')">Poll Results</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Academic Calendar & Timetables</div>
+      <div class="grid">
+        <div class="grid-item" onclick="showModal('Academic Year Schedule')">Academic Calendar</div>
+        <div class="grid-item" onclick="showModal('Exam Schedule')">Exam Timetable</div>
+        <div class="grid-item" onclick="showModal('Class Routine')">Class Timetable</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Follow Us</div>
+      <div class="icons-row">
+        <i class="fab fa-instagram icon"></i>
+        <i class="fab fa-telegram icon"></i>
+        <i class="fab fa-twitter icon"></i>
+        <i class="fab fa-youtube icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <i class="fas fa-home"></i>
+    <i class="fas fa-comments"></i>
+    <i class="fas fa-user-plus"></i>
+    <i class="fas fa-th"></i>
+  </footer>
+
+  <div id="modal">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <div id="notifModal">
+    <div class="modal-content">No notifications yet</div>
+  </div>
+
+  <script>
+    function showModal(content) {
+      document.getElementById('modalContent').innerText = content;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    document.getElementById('modal').onclick = () => {
+      document.getElementById('modal').style.display = 'none';
+    };
+
+    function showNotif() {
+      document.getElementById('notifModal').style.display = 'flex';
+    }
+
+    document.getElementById('notifModal').onclick = () => {
+      document.getElementById('notifModal').style.display = 'none';
+    };
+
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById('toggleIcon');
+      body.classList.toggle('light-theme');
+      icon.textContent = body.classList.contains('light-theme') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>
