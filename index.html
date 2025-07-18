@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY VTU - Boarding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --secondary-color: #a78bfa;
+      --bg-color: #f9fafb;
+      --text-color: #111827;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow: hidden;
+    }
+
+    .boarding-container {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      width: 400vw;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .slide img {
+      width: 80%;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .slide h1 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .slide p {
+      font-size: 0.95rem;
+      max-width: 500px;
+      color: #374151;
+      padding: 0 1rem;
+    }
+
+    .navigation {
+      position: absolute;
+      bottom: 35px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 2;
+    }
+
+    .nav-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      background: var(--primary-color);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--secondary-color);
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 4px;
+      background-color: #d1d5db;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: var(--primary-color);
+    }
+
+    @media (max-width: 480px) {
+      .slide h1 {
+        font-size: 1.4rem;
+      }
+
+      .slide p {
+        font-size: 0.85rem;
+      }
+
+      .slide img {
+        max-width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="boarding-container">
+    <div class="slider-wrapper" id="slider">
+      <div class="slide">
+        <img src="1.png" alt="Welcome">
+        <h1>Welcome to MY VTU</h1>
+        <p>Your all-in-one destination for notes, tools, and updates designed for VTU students.</p>
+      </div>
+      <div class="slide">
+        <img src="2.png" alt="Notes">
+        <h1>Top-Quality Notes</h1>
+        <p>Get exclusive access to curated study materials from VTU toppers and professionals.</p>
+      </div>
+      <div class="slide">
+        <img src="3.png" alt="Updates">
+        <h1>Instant VTU Alerts</h1>
+        <p>Never miss deadlines or news. We bring real-time updates directly to your dashboard.</p>
+      </div>
+      <div class="slide">
+        <img src="4.png" alt="Tools">
+        <h1>Smarter Tools for You</h1>
+        <p>Utilize GPA calculators, timetables, and more — all built into your academic toolkit.</p>
+      </div>
+    </div>
+    <div class="navigation">
+      <button class="nav-btn" onclick="prevSlide()">Back</button>
+      <button class="nav-btn" onclick="nextSlide()">Next</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const dotsContainer = document.getElementById('dots');
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let interval = null;
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    function createDots() {
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function startAutoSlide() {
+      interval = setInterval(() => {
+        nextSlide();
+      }, 4000); // 4 seconds
+    }
+
+    createDots();
+    updateSlider();
+    startAutoSlide();
+  </script>
+</body>
+</html>
