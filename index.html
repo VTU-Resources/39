@@ -46,8 +46,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 5rem 1rem 6rem; /* more top padding to move content lower */
       text-align: center;
+      padding: 5rem 1rem 6rem;
+    }
+
+    /* Custom padding per slide */
+    .slide:nth-child(1) {
+      padding-top: 5rem;
+    }
+
+    .slide:nth-child(2),
+    .slide:nth-child(3),
+    .slide:nth-child(4) {
+      padding-top: 6rem; /* Moves image + content lower */
     }
 
     .slide img {
@@ -72,7 +83,6 @@
       padding: 0 1rem;
     }
 
-    /* Dots */
     .dots {
       position: fixed;
       bottom: 90px;
@@ -95,7 +105,6 @@
       background-color: var(--primary-color);
     }
 
-    /* Navigation Buttons */
     .navigation {
       position: fixed;
       bottom: 30px;
@@ -124,8 +133,14 @@
     }
 
     @media (max-width: 480px) {
-      .slide {
-        padding: 5rem 1rem 6rem;
+      .slide:nth-child(1) {
+        padding-top: 5rem;
+      }
+
+      .slide:nth-child(2),
+      .slide:nth-child(3),
+      .slide:nth-child(4) {
+        padding-top: 6.5rem;
       }
 
       .slide h1 {
@@ -183,10 +198,8 @@
       </div>
     </div>
 
-    <!-- Dots -->
     <div class="dots" id="dots"></div>
 
-    <!-- Navigation Buttons -->
     <div class="navigation">
       <button class="nav-btn" onclick="prevSlide()">Back</button>
       <button class="nav-btn" onclick="nextSlide()">Next</button>
