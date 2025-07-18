@@ -46,15 +46,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 2.5rem 1rem 5rem;
+      padding: 5rem 1rem 6rem; /* more top padding to move content lower */
       text-align: center;
     }
 
     .slide img {
       width: 80%;
       max-width: 280px;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
     }
@@ -76,7 +75,7 @@
     /* Dots */
     .dots {
       position: fixed;
-      bottom: 85px; /* moved slightly up from 70px */
+      bottom: 90px;
       width: 100%;
       text-align: center;
       z-index: 2;
@@ -96,26 +95,28 @@
       background-color: var(--primary-color);
     }
 
-    /* Fixed centered buttons */
+    /* Navigation Buttons */
     .navigation {
       position: fixed;
       bottom: 30px;
       width: 100%;
       display: flex;
       justify-content: center;
-      gap: 0.8rem;
+      gap: 1.2rem;
       z-index: 3;
+      padding: 0 2rem;
     }
 
     .nav-btn {
-      padding: 0.6rem 1.4rem;
+      padding: 0.65rem 1.6rem;
       font-size: 0.95rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background: var(--primary-color);
       color: white;
       cursor: pointer;
       transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     .nav-btn:hover {
@@ -123,6 +124,10 @@
     }
 
     @media (max-width: 480px) {
+      .slide {
+        padding: 5rem 1rem 6rem;
+      }
+
       .slide h1 {
         font-size: 1.4rem;
       }
@@ -133,17 +138,18 @@
 
       .slide img {
         max-width: 220px;
-        margin-top: 1.5rem;
+        margin-top: 0.5rem;
       }
 
       .nav-btn {
         font-size: 0.85rem;
-        padding: 0.5rem 1.2rem;
+        padding: 0.5rem 1.3rem;
       }
 
       .navigation {
         bottom: 25px;
-        gap: 0.6rem;
+        gap: 1rem;
+        padding: 0 1.5rem;
       }
 
       .dots {
