@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>MY VTU - Onboarding</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -11,6 +11,8 @@
       --secondary-color: #a78bfa;
       --bg-color: #f9fafb;
       --text-color: #111827;
+      --safe-top: env(safe-area-inset-top, 20px);
+      --safe-bottom: env(safe-area-inset-bottom, 20px);
     }
 
     * {
@@ -26,6 +28,8 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       overflow: hidden;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
     }
 
     .boarding-container {
@@ -33,23 +37,26 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .slider-wrapper {
       display: flex;
       width: 400vw;
       transition: transform 0.8s ease-in-out;
+      flex-grow: 1;
     }
 
     .slide {
       width: 100vw;
-      height: 100vh;
+      height: calc(100vh - var(--safe-top) - var(--safe-bottom));
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding-top: 6.2rem;
+      padding-top: 7.2rem;
       padding-left: 1rem;
       padding-right: 1rem;
     }
@@ -78,7 +85,7 @@
 
     .dots {
       position: fixed;
-      bottom: 95px;
+      bottom: calc(95px + var(--safe-bottom));
       width: 100%;
       text-align: center;
       z-index: 2;
@@ -100,7 +107,7 @@
 
     .navigation {
       position: fixed;
-      bottom: 30px;
+      bottom: calc(30px + var(--safe-bottom));
       width: 100%;
       display: flex;
       justify-content: center;
@@ -128,7 +135,7 @@
 
     @media (max-width: 480px) {
       .slide {
-        padding-top: 7.2rem;
+        padding-top: 8.5rem;
       }
 
       .slide h1 {
@@ -149,13 +156,12 @@
       }
 
       .navigation {
-        bottom: 25px;
         gap: 11rem;
         padding: 0 1.5rem;
       }
 
       .dots {
-        bottom: 68px;
+        bottom: calc(68px + var(--safe-bottom));
       }
     }
   </style>
@@ -199,7 +205,6 @@
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
     let currentIndex = 0;
-    let interval = null;
     const nextBtn = document.getElementById('nextBtn');
 
     function updateSlider() {
@@ -211,25 +216,23 @@
     }
 
     function checkLastSlide() {
-      if (currentIndex === totalSlides - 1) {
-        nextBtn.textContent = 'Continue';
-      } else {
-        nextBtn.textContent = 'Next';
-      }
+      nextBtn.textContent = currentIndex === totalSlides - 1 ? 'Continue' : 'Next';
     }
 
     function nextSlide() {
       if (currentIndex === totalSlides - 1) {
         window.location.href = 'home.html';
       } else {
-        currentIndex = (currentIndex + 1) % totalSlides;
+        currentIndex++;
         updateSlider();
       }
     }
 
     function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateSlider();
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
     }
 
     function createDots() {
@@ -242,8 +245,10 @@
     }
 
     function startAutoSlide() {
-      interval = setInterval(() => {
-        nextSlide();
+      setInterval(() => {
+        if (currentIndex < totalSlides - 1) {
+          nextSlide();
+        }
       }, 4000);
     }
 
