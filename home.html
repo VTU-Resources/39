@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent; /* 🟢 Remove blue tap highlight */
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -25,8 +25,12 @@
       color: #000000;
     }
 
-    header, nav, .container {
-      padding: 16px;
+    header {
+      padding: 12px 16px 4px; /* Reduced bottom space */
+    }
+
+    .container {
+      padding: 0 16px 80px; /* Added bottom padding for footer space */
     }
 
     .banner {
@@ -35,12 +39,12 @@
       border-radius: 12px;
       text-align: center;
       color: white;
-      margin: 16px 0;
+      margin: 12px 0 8px 0; /* Reduced top & bottom margin to tighten space */
     }
 
     .section {
       background: #1e1e1e;
-      margin: 16px 0;
+      margin: 12px 0;
       border-radius: 10px;
       padding: 16px;
     }
@@ -215,6 +219,7 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Top bar with title, notification and theme toggle -->
   <div class="top-bar">
     <h3>MY VTU</h3>
     <div style="display: flex; align-items: center; gap: 12px;">
@@ -239,12 +244,14 @@
     </div>
   </header>
 
+  <!-- Banner: reduced margin for tighter spacing -->
   <div class="banner">
     <h3>BEST PLATFORM FOR VTU STUDENTS</h3>
     <p>Over 120K+ Installs • 40K+ Active Students</p>
   </div>
 
   <div class="container">
+    <!-- Academics Section -->
     <div class="section">
       <div class="section-title">Academics & Resources</div>
       <div class="grid">
@@ -255,6 +262,7 @@
       </div>
     </div>
 
+    <!-- Results Section -->
     <div class="section">
       <div class="section-title">Results & Analysis</div>
       <div class="grid">
@@ -265,6 +273,7 @@
       </div>
     </div>
 
+    <!-- Calendar Section -->
     <div class="section">
       <div class="section-title">Academic Calendar & Timetables</div>
       <div class="grid">
@@ -274,6 +283,7 @@
       </div>
     </div>
 
+    <!-- Social Media -->
     <div class="section">
       <div class="section-title">Follow Us</div>
       <div class="icons-row">
@@ -285,6 +295,7 @@
     </div>
   </div>
 
+  <!-- Footer Navigation -->
   <footer>
     <i class="fas fa-home"></i>
     <i class="fas fa-comments"></i>
@@ -292,6 +303,7 @@
     <i class="fas fa-th"></i>
   </footer>
 
+  <!-- Modal Windows -->
   <div id="modal">
     <div class="modal-content" id="modalContent"></div>
   </div>
@@ -300,6 +312,7 @@
     <div class="modal-content">No notifications yet</div>
   </div>
 
+  <!-- JavaScript Logic -->
   <script>
     function showModal(content) {
       document.getElementById('modalContent').innerText = content;
