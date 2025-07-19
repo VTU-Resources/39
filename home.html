@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent; /* 🟢 Remove blue tap highlight */
     }
 
     body {
@@ -29,25 +29,18 @@
       padding: 16px;
     }
 
-    /* ✅ Polished Banner Styling */
-    .banner-wrapper {
-      display: flex;
-      justify-content: center;
+    .banner {
+      background: linear-gradient(135deg, orange, #ff8800);
       padding: 16px;
-    }
-
-    .banner-wrapper img {
-      width: 100%;
-      max-width: 1000px;
-      border-radius: 18px;
-      display: block;
-      object-fit: cover;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      text-align: center;
+      color: white;
+      margin: 16px 0;
     }
 
     .section {
       background: #1e1e1e;
-      margin: 16px;
+      margin: 16px 0;
       border-radius: 10px;
       padding: 16px;
     }
@@ -91,6 +84,17 @@
       background: #ccc;
     }
 
+    .icons-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
     .timetable {
       display: flex;
       overflow-x: auto;
@@ -116,6 +120,49 @@
 
     body.light-theme .timetable div {
       background: #bbb;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    footer i {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    body.light-theme footer {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    #modal, #notifModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 300px;
+      text-align: center;
     }
 
     .top-bar {
@@ -162,61 +209,8 @@
     body.light-theme .toggle-switch {
       background: #ddd;
     }
-
-    .icons-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #1a1a1a;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #333;
-    }
-
-    footer i {
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    body.light-theme footer {
-      background: #f5f5f5;
-      border-color: #ccc;
-    }
-
-    #modal, #notifModal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal-content {
-      background: #fff;
-      color: #000;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 300px;
-      text-align: center;
-    }
   </style>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -232,7 +226,7 @@
   </div>
 
   <header>
-    <h2 style="padding: 0 16px;">Welcome, <span style="color: orange">Shridhar J</span></h2>
+    <h2>Welcome, <span style="color: orange">Shridhar J</span></h2>
     <div class="timetable">
       <div>1st Sem</div>
       <div>2nd Sem</div>
@@ -245,9 +239,9 @@
     </div>
   </header>
 
-  <!-- ✅ Updated Banner Integration -->
-  <div class="banner-wrapper">
-    <img src="11.png" alt="VTU Banner" />
+  <div class="banner">
+    <h3>BEST PLATFORM FOR VTU STUDENTS</h3>
+    <p>Over 120K+ Installs • 40K+ Active Students</p>
   </div>
 
   <div class="container">
