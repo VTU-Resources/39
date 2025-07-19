@@ -29,24 +29,25 @@
       padding: 16px;
     }
 
+    /* ✅ Updated Banner Styling */
     .banner-container {
-      margin: 0 auto;
+      padding: 24px;
+      margin: 24px auto;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0; /* ✅ Removed padding */
-      max-width: 1000px;
-      width: 100%;
     }
 
     .banner-container img {
       width: 100%;
+      max-width: 1280px;
       height: auto;
-      display: block;
-      border-radius: 16px;
+      border-radius: 20px;
       object-fit: contain;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
+    /* Responsive Sections */
     .section {
       background: #1e1e1e;
       margin: 16px 0;
@@ -218,6 +219,7 @@
     body.light-theme .toggle-switch {
       background: #ddd;
     }
+
   </style>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -248,12 +250,13 @@
     </div>
   </header>
 
-  <!-- ✅ Clean Responsive Banner Image -->
+  <!-- ✅ Final Banner Image -->
   <div class="banner-container">
     <img src="11.png" alt="VTU Banner">
   </div>
 
   <div class="container">
+    <!-- All sections below remain same -->
     <div class="section">
       <div class="section-title">Academics & Resources</div>
       <div class="grid">
