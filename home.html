@@ -29,28 +29,25 @@
       padding: 16px;
     }
 
-    /* ✅ Updated Banner Styling */
-    .banner-container {
-      padding: 24px;
-      margin: 24px auto;
+    /* ✅ Final Polished Banner */
+    .banner-wrapper {
       display: flex;
       justify-content: center;
-      align-items: center;
+      margin: 16px;
     }
 
-    .banner-container img {
+    .banner-wrapper img {
       width: 100%;
-      max-width: 1280px;
-      height: auto;
-      border-radius: 20px;
-      object-fit: contain;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      max-width: 1024px;
+      border-radius: 16px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* Responsive Sections */
     .section {
       background: #1e1e1e;
-      margin: 16px 0;
+      margin: 16px;
       border-radius: 10px;
       padding: 16px;
     }
@@ -94,17 +91,6 @@
       background: #ccc;
     }
 
-    .icons-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
     .timetable {
       display: flex;
       overflow-x: auto;
@@ -130,49 +116,6 @@
 
     body.light-theme .timetable div {
       background: #bbb;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #1a1a1a;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      border-top: 1px solid #333;
-    }
-
-    footer i {
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    body.light-theme footer {
-      background: #f5f5f5;
-      border-color: #ccc;
-    }
-
-    #modal, #notifModal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal-content {
-      background: #fff;
-      color: #000;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 300px;
-      text-align: center;
     }
 
     .top-bar {
@@ -220,8 +163,61 @@
       background: #ddd;
     }
 
-  </style>
+    .icons-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
 
+    .icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    footer i {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    body.light-theme footer {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    #modal, #notifModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -237,7 +233,7 @@
   </div>
 
   <header>
-    <h2>Welcome, <span style="color: orange">Shridhar J</span></h2>
+    <h2 style="padding: 0 16px;">Welcome, <span style="color: orange">Shridhar J</span></h2>
     <div class="timetable">
       <div>1st Sem</div>
       <div>2nd Sem</div>
@@ -250,13 +246,12 @@
     </div>
   </header>
 
-  <!-- ✅ Final Banner Image -->
-  <div class="banner-container">
-    <img src="11.png" alt="VTU Banner">
+  <!-- ✅ Final Banner With Clean Padding & Auto Fit -->
+  <div class="banner-wrapper">
+    <img src="11.png" alt="VTU Banner" />
   </div>
 
   <div class="container">
-    <!-- All sections below remain same -->
     <div class="section">
       <div class="section-title">Academics & Resources</div>
       <div class="grid">
