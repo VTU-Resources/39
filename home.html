@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VTU Connect Pro</title>
+  <title>MY VTU</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent; /* 🟢 Remove blue tap highlight */
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -29,13 +29,19 @@
       padding: 16px;
     }
 
-    .banner {
-      background: linear-gradient(135deg, orange, #ff8800);
+    .banner-container {
       padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      color: white;
       margin: 16px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .banner-container img {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      border-radius: 16px;
+      object-fit: contain;
     }
 
     .section {
@@ -216,7 +222,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <h3>VTU Connect</h3>
+    <h3>MY VTU</h3>
     <div style="display: flex; align-items: center; gap: 12px;">
       <i class="fas fa-bell" onclick="showNotif()" style="font-size: 20px; cursor:pointer;"></i>
       <div class="toggle-switch" onclick="toggleTheme()">
@@ -239,9 +245,9 @@
     </div>
   </header>
 
-  <div class="banner">
-    <h3>BEST PLATFORM FOR VTU STUDENTS</h3>
-    <p>Over 120K+ Installs • 40K+ Active Students</p>
+  <!-- ✅ Banner Image (Responsive & Perfect on All Screens) -->
+  <div class="banner-container">
+    <img src="11.png" alt="VTU Banner">
   </div>
 
   <div class="container">
