@@ -30,16 +30,19 @@
     }
 
     .banner-container {
-      padding: 16px;
-      margin: 16px 0;
+      margin: 0 auto;
       display: flex;
       justify-content: center;
+      align-items: center;
+      padding: 0; /* ✅ Removed padding */
+      max-width: 1000px;
+      width: 100%;
     }
 
     .banner-container img {
       width: 100%;
-      max-width: 1000px;
       height: auto;
+      display: block;
       border-radius: 16px;
       object-fit: contain;
     }
@@ -245,7 +248,7 @@
     </div>
   </header>
 
-  <!-- ✅ Banner Image (Responsive & Perfect on All Screens) -->
+  <!-- ✅ Clean Responsive Banner Image -->
   <div class="banner-container">
     <img src="11.png" alt="VTU Banner">
   </div>
