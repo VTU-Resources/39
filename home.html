@@ -39,10 +39,71 @@
     footer { position:fixed; bottom:0; width:100%; background:#1a1a1a; display:flex; justify-content:space-around; padding:10px 0; border-top:1px solid #333; z-index:1003; }
     footer i { font-size:20px; cursor:pointer; }
     body.light-theme footer { background:#f5f5f5; border-color:#ccc; }
-    #modal, #notifModal, #semPopup { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:999; }
-    .modal-content, .sem-box { background:#fff; color:#000; padding:20px; border-radius:12px; text-align:center; max-width:300px; width:90%; }
-    .sem-box button { background:orange; color:#fff; border:none; padding:8px 16px; border-radius:6px; font-weight:bold; font-size:13px; cursor:pointer; margin-top:10px; }
-    @media(max-width:480px){ .grid-item{font-size:12px;padding:10px;} .timetable div{padding:8px 12px;font-size:13px;} footer i{font-size:18px;} }
+
+    /* Modal Styles */
+    #modal, #notifModal, #semPopup, #customPopup {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100vw; height:100vh;
+      background:rgba(0,0,0,0.7);
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content, .sem-box, .custom-box {
+      background:#fff;
+      color:#000;
+      padding:20px;
+      border-radius:12px;
+      text-align:center;
+      max-width:300px;
+      width:90%;
+      position:relative;
+      animation: popupAppear 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+    @keyframes popupAppear {
+      from { transform:scale(0.9); opacity:0; }
+      to { transform:scale(1); opacity:1; }
+    }
+
+    .close-btn {
+      position:absolute;
+      top:8px;
+      right:12px;
+      font-size:18px;
+      font-weight:bold;
+      color:#999;
+      cursor:pointer;
+    }
+
+    select, button {
+      width:100%;
+      padding:8px 10px;
+      font-size:14px;
+      margin-top:10px;
+      border-radius:6px;
+    }
+    button {
+      background:orange;
+      color:#fff;
+      border:none;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    @media(max-width:480px){
+      .grid-item{font-size:12px;padding:10px;}
+      .timetable div{padding:8px 12px;font-size:13px;}
+      footer i{font-size:18px;}
+    }
   </style>
 </head>
 <body>
@@ -79,9 +140,9 @@
     <div class="section">
       <div class="section-title">Academics & Resources</div>
       <div class="grid">
-        <div class="grid-item" onclick="showModal('Syllabus Details')">Syllabus</div>
-        <div class="grid-item" onclick="showModal('Notes Info')">Notes</div>
-        <div class="grid-item" onclick="showModal('Old Question Papers')">Question Papers</div>
+        <div class="grid-item" onclick="openCustomPopup('Syllabus')">Syllabus</div>
+        <div class="grid-item" onclick="openCustomPopup('Notes')">Notes</div>
+        <div class="grid-item" onclick="openCustomPopup('Question Papers')">Question Papers</div>
         <div class="grid-item" onclick="showModal('Latest Notifications')">Notifications</div>
       </div>
     </div>
@@ -108,18 +169,10 @@
     <div class="section">
       <div class="section-title">Follow Us</div>
       <div class="social-icons">
-        <a href="https://whatsapp.com/channel/0029VamFgKlF1YlWMNixr70b" target="_blank" title="WhatsApp">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-        </a>
-        <a href="https://www.instagram.com/vtubelgaumupdates?igsh=ajZtdmc1eTVtM2tp" target="_blank" title="Instagram">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
-        </a>
-        <a href="https://t.me/+wI9J8oGprVVkZGE1" target="_blank" title="Telegram">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" />
-        </a>
-        <a href="https://www.youtube.com/@edustar-be-kea?sub_confirmation=1" target="_blank" title="YouTube">
-          <img src="21.AVIF" alt="YouTube" />
-        </a>
+        <a href="https://whatsapp.com/channel/0029VamFgKlF1YlWMNixr70b" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" /></a>
+        <a href="https://www.instagram.com/vtubelgaumupdates?igsh=ajZtdmc1eTVtM2tp" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" /></a>
+        <a href="https://t.me/+wI9J8oGprVVkZGE1" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" /></a>
+        <a href="https://www.youtube.com/@edustar-be-kea?sub_confirmation=1" target="_blank"><img src="21.AVIF" alt="YouTube" /></a>
       </div>
     </div>
   </div>
@@ -131,9 +184,27 @@
     <i class="fas fa-th"></i>
   </footer>
 
-  <div id="modal"><div class="modal-content" id="modalContent"></div></div>
-  <div id="notifModal"><div class="modal-content">No notifications yet</div></div>
-  <div id="semPopup"><div class="sem-box"><h3 id="popupSem">Materials Available</h3><button onclick="openDrive()">Continue</button></div></div>
+  <!-- Popups -->
+  <div id="modal"><div class="modal-content"><span class="close-btn" onclick="closePopup(this)">×</span><div id="modalContent"></div></div></div>
+  <div id="notifModal"><div class="modal-content"><span class="close-btn" onclick="closePopup(this)">×</span>No notifications yet</div></div>
+  <div id="semPopup"><div class="sem-box"><span class="close-btn" onclick="closePopup(this)">×</span><h3 id="popupSem">Materials Available</h3><button onclick="openDrive()">Continue</button></div></div>
+
+  <div id="customPopup">
+    <div class="custom-box">
+      <span class="close-btn" onclick="closePopup(this)">×</span>
+      <h3>Select Semester</h3>
+      <select id="customSelect">
+        <option disabled selected>Select Semester</option>
+        <option>1st Sem</option><option>2nd Sem</option><option>3rd Sem</option><option>4th Sem</option>
+        <option>5th Sem</option><option>6th Sem</option><option>7th Sem</option><option>8th Sem</option>
+      </select>
+      <button onclick="proceedNext()">Next</button>
+      <div id="customConfirm" style="display:none; margin-top:10px;">
+        <p>Yes, materials available</p>
+        <button onclick="goToDrive()">Continue</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     const driveLinks = {
@@ -147,30 +218,55 @@
       '8th Sem': 'https://drive.google.com/file/d/8hhh/view'
     };
     let currentSem = '';
+
     function openSem(sem) {
       currentSem = sem;
       document.getElementById('popupSem').innerText = `${sem} – Materials Available`;
       document.getElementById('semPopup').style.display = 'flex';
     }
+
     function openDrive() {
-      window.open(driveLinks[currentSem], '_blank');
+      if (driveLinks[currentSem]) window.open(driveLinks[currentSem], '_blank');
       document.getElementById('semPopup').style.display = 'none';
     }
+
     function showModal(content) {
       document.getElementById('modalContent').innerText = content;
       document.getElementById('modal').style.display = 'flex';
     }
-    document.getElementById('modal').onclick = e => { if(e.target.id==='modal') e.target.style.display='none' };
+
     function showNotif() {
       document.getElementById('notifModal').style.display = 'flex';
     }
-    document.getElementById('notifModal').onclick = e => { if(e.target.id==='notifModal') e.target.style.display='none' };
-    document.getElementById('semPopup').onclick = e => { if(e.target.id==='semPopup') e.target.style.display='none' };
+
     function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById('toggleIcon');
       body.classList.toggle('light-theme');
       icon.textContent = body.classList.contains('light-theme') ? '☀️' : '🌙';
+    }
+
+    function closePopup(el) {
+      el.closest('div[id]').style.display = 'none';
+    }
+
+    function openCustomPopup(type) {
+      document.getElementById('customPopup').style.display = 'flex';
+      document.getElementById('customConfirm').style.display = 'none';
+      document.getElementById('customSelect').selectedIndex = 0;
+    }
+
+    function proceedNext() {
+      const select = document.getElementById('customSelect');
+      if (select.value) {
+        currentSem = select.value;
+        document.getElementById('customConfirm').style.display = 'block';
+      }
+    }
+
+    function goToDrive() {
+      if (driveLinks[currentSem]) window.open(driveLinks[currentSem], '_blank');
+      document.getElementById('customPopup').style.display = 'none';
     }
   </script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
