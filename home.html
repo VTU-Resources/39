@@ -40,7 +40,7 @@
     footer i { font-size:20px; cursor:pointer; }
     body.light-theme footer { background:#f5f5f5; border-color:#ccc; }
 
-    #modal, #notifModal, #semPopup, #customPopup, #comingSoonPopup {
+    #modal, #notifModal, #semPopup, #customPopup, #comingSoonPopup, #examPopup {
       display:none;
       position:fixed;
       top:0; left:0;
@@ -164,9 +164,9 @@
     <div class="section">
       <div class="section-title">Academic Calendar & Timetables</div>
       <div class="grid">
-        <div class="grid-item" onclick="showModal('Academic Calendar')">Academic Calendar</div>
-        <div class="grid-item" onclick="showModal('Exam Timetable')">Exam Timetable</div>
-        <div class="grid-item" onclick="showModal('Class Timetable')">Class Timetable</div>
+        <div class="grid-item" onclick="showAcademicPopup()">Academic Calendar</div>
+        <div class="grid-item" onclick="showExamPopup()">Exam Timetable</div>
+        <div class="grid-item" onclick="showClassTimetable()">Class Timetable</div>
       </div>
     </div>
 
@@ -194,6 +194,7 @@
   <div id="semPopup"><div class="sem-box"><span class="close-btn" onclick="closePopup(this)">×</span><h3 id="popupSem">Materials Available</h3><button onclick="openDrive()">Continue</button></div></div>
   <div id="customPopup"><div class="custom-box"><span class="close-btn" onclick="closePopup(this)">×</span><h3>Select Semester</h3><select id="customSelect"><option disabled selected>Select Semester</option><option>1st Sem</option><option>2nd Sem</option><option>3rd Sem</option><option>4th Sem</option><option>5th Sem</option><option>6th Sem</option><option>7th Sem</option><option>8th Sem</option></select><button onclick="proceedNext()">Next</button><div id="customConfirm" style="display:none; margin-top:10px;"><p>Yes, materials available</p><button onclick="goToDrive()">Continue</button></div></div></div>
   <div id="comingSoonPopup"><div class="coming-box"><h3>Coming Soon</h3><p style="margin-top:10px;">This feature is under development.</p><button onclick="document.getElementById('comingSoonPopup').style.display='none'">OK</button></div></div>
+  <div id="examPopup"><div class="coming-box"><span class="close-btn" onclick="closePopup(this)">×</span><h3>Exam Timetable</h3><p style="margin-top:10px;">No scheduled exams</p><button onclick="closePopup(this)">OK</button></div></div>
 
   <script>
     const driveLinks = {
@@ -203,8 +204,10 @@
       '4th Sem': 'https://drive.google.com/drive/folders/1NjId1TfNBZ759IU6wNAPMVD0T7UM884n?usp=drive_link',
       '5th Sem': 'https://drive.google.com/drive/folders/1LEvzezF2PkcBASl8aw845UQL36H0wEDx?usp=drive_link',
       '6th Sem': 'https://drive.google.com/drive/folders/1-RUOQojYTxaTYIhdhN45iTTf5MoNWwnD?usp=drive_link',
-      '7th Sem': 'https://drive.google.com/file/d/7ggg/view',
-      '8th Sem': 'https://drive.google.com/file/d/8hhh/view'
+      '7th Sem': 'https://drive.google.com/file/d/1nOC-CwUUNSpDC8YuJXgEwL9wiTbM-sk7/view?usp=drive_link',
+      '8th Sem': 'https://drive.google.com/file/d/1nOC-CwUUNSpDC8YuJXgEwL9wiTbM-sk7/view?usp=drive_link',
+      'Academic Calendar': 'https://drive.google.com/drive/folders/1acddummyExampleLink',
+      'Class Timetable': 'https://drive.google.com/file/d/1nOC-CwUUNSpDC8YuJXgEwL9wiTbM-sk7/view?usp=drive_link'
     };
     let currentSem = '';
 
@@ -261,6 +264,22 @@
     function goToDrive() {
       if (driveLinks[currentSem]) window.open(driveLinks[currentSem], '_blank');
       document.getElementById('customPopup').style.display = 'none';
+    }
+
+    function showAcademicPopup() {
+      currentSem = 'Academic Calendar';
+      document.getElementById('popupSem').innerText = 'Academic Calendar – Materials Available';
+      document.getElementById('semPopup').style.display = 'flex';
+    }
+
+    function showClassTimetable() {
+      currentSem = 'Class Timetable';
+      document.getElementById('popupSem').innerText = 'Class Timetable – Materials Available';
+      document.getElementById('semPopup').style.display = 'flex';
+    }
+
+    function showExamPopup() {
+      document.getElementById('examPopup').style.display = 'flex';
     }
   </script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
